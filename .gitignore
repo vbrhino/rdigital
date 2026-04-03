@@ -1,1 +1,7 @@
 undefined:
+.idea/
+*.trace.js
+analyze_flow.js
+check_optional_flow.js
+test_*.html
+trace_*.js
