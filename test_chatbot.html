@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chatbot Flow Test</title>
+</head>
+<body>
+<h1>Chatbot Logic Test</h1>
+<div id="output"></div>
+
+<script>
+const steps = [
+  { field: "name", id: "fieldName", type: "input" },
+  { field: "email", id: "fieldEmail", type: "input" },
+  { field: "company", id: "fieldCompany", type: "input" },
+  { field: "contactMethod", id: "fieldContactMethod", type: "choice" },
+  { field: "urgency", id: "fieldUrgency", type: "choice" },
+  { field: "details", id: "fieldDetails", type: "input" },
+];
+
+const output = document.getElementById('output');
+
+// Test 1: What happens at each step?
+output.innerHTML += '<h2>Step Analysis:</h2>';
+output.innerHTML += `<p>Steps array length: ${steps.length}</p>`;
+output.innerHTML += `<p>Valid indices: 0 to ${steps.length - 1}</p>`;
+
+// Test 2: Simulate showStep logic
+function analyzeShowStep(index) {
+  const results = [];
+  
+  // This is the logic from line 386-393
+  steps.forEach((step, currentIndex) => {
+    const isVisible = currentIndex === index;
+    results.push(`  Step ${currentIndex} (${step.field}): ${isVisible ? 'VISIBLE' : 'hidden'}`);
+  });
+  
+  // Line 391-393
+  const detailFieldVisible = index === 5;
+  const nextButtonVisible = index !== 5;
+  const sendButtonVisible = index === 6;
+  
+  results.push(`  detailField: ${detailFieldVisible ? 'VISIBLE' : 'hidden'}`);
+  results.push(`  nextButton: ${nextButtonVisible ? 'VISIBLE' : 'hidden'}`);
+  results.push(`  sendButton: ${sendButtonVisible ? 'VISIBLE' : 'hidden'}`);
+  
+  return results.join('\n');
+}
+
+// Test each step
+for (let i = 0; i <= 6; i++) {
+  output.innerHTML += `<h3>showStep(${i}):</h3>`;
+  output.innerHTML += `<pre>${analyzeShowStep(i)}</pre>`;
+}
+
+// Test 3: What happens when step reaches steps.length?
+output.innerHTML += '<h2>Final Step Logic:</h2>';
+output.innerHTML += `<p>When state.step reaches ${steps.length}, the code calls showStep(6)</p>`;
+output.innerHTML += `<p>But step index 6 is OUT OF BOUNDS (steps only go 0-${steps.length - 1})</p>`;
+
+// Test 4: Check the hidden toggle logic
+output.innerHTML += '<h2>Critical Issue at Step 5:</h2>';
+output.innerHTML += '<p>At step 5 (details field):</p>';
+output.innerHTML += '<pre>';
+output.innerHTML += '  Line 391: detailField.classList.toggle("hidden", index !== 5)\n';
+output.innerHTML += '    → index === 5, so toggle("hidden", false) → detailField is VISIBLE ✓\n\n';
+output.innerHTML += '  Line 392: nextButton.classList.toggle("hidden", index === 5)\n';
+output.innerHTML += '    → index === 5, so toggle("hidden", true) → nextButton is HIDDEN ✗\n\n';
+output.innerHTML += '  Line 393: sendButton.classList.toggle("hidden", index !== 6)\n';
+output.innerHTML += '    → index === 5, so toggle("hidden", true) → sendButton is HIDDEN ✗\n';
+output.innerHTML += '</pre>';
+output.innerHTML += '<p><strong style="color: red;">PROBLEM: At step 5, BOTH buttons are hidden!</strong></p>';
+
+</script>
+</body>
+</html>

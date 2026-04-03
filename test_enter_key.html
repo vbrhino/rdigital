@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head><title>Form Enter Test</title></head>
+<body>
+<h2>Testing Enter key behavior</h2>
+
+<form id="testForm">
+  <div>
+    <label>Text input:</label>
+    <input type="text" id="textInput" />
+  </div>
+  <div>
+    <label>Textarea:</label>
+    <textarea id="textarea"></textarea>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+document.getElementById('testForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  document.getElementById('result').innerHTML += '<p>Form submitted!</p>';
+});
+
+console.log("ENTER key behavior in forms:");
+console.log("1. In text input: Pressing Enter SUBMITS the form");
+console.log("2. In textarea: Pressing Enter adds a NEWLINE (does NOT submit)");
+console.log("");
+console.log("In the chatbot at step 5:");
+console.log("  - Only a textarea is visible (details field)");
+console.log("  - Both buttons are hidden");
+console.log("  - Pressing Enter in textarea → newline only");
+console.log("  - User is STUCK with no visible way to proceed");
+</script>
+</body>
+</html>
