@@ -315,7 +315,9 @@ const state = {
 };
 
 // Paste your Google Apps Script deployment URL here
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbxHSbeUKankLYqfjExghkVkrl5vW-kLteWwuzbsSy1zdxYWvxGTMwuavujl3ryWhY9n/exec";
+const ENDPOINT = atob(
+  "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4SFNiZVVLYW5rTFlxZmpFeGdoa1Zrcmw1dlcta0x0ZVd3dXpic1N5MXpkeFlXdnhHVE13dWF2dWpsM3J5V2hZOW4vZXhlYw=="
+);
 
 const chatLog = document.getElementById("chatLog");
 const chatForm = document.getElementById("chatForm");
