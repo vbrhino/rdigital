@@ -128,7 +128,7 @@ const translations = {
     process4: "We sturen bij als dat nodig is.",
     contactEyebrow: "Contact",
     contactTitle: "Start met een snelle intake",
-    contactLead: "Vul de chat in met je contactgegevens, voorkeur voor contact, urgentie en eventuele extra info.",
+    contactLead: "Vul de chat in met je contactgegevens, urgentie en eventuele extra info.",
     chatKicker: "Rhino Digital intake",
     chatTitle: "Snel en eenvoudig",
     chatNote: "Een paar korte stappen, daarna volgt een gerichte reactie.",
