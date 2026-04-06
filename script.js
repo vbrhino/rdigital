@@ -527,7 +527,7 @@ document.querySelectorAll(".lang-button").forEach((button) => {
 // ========================
 // Cookie consent + GA4
 // ========================
-const GA_ID = "G-GNS9K803CE"; // Replace with your GA4 Measurement ID
+const GA_ID = "G-GY8QDENFFK"; // Replace with your GA4 Measurement ID
 
 function loadAnalytics() {
   if (!GA_ID || GA_ID === "G-XXXXXXXXXX") return;
